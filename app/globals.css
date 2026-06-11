@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 30% 94%;
+    --foreground: 0 0% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 12%;
+    --primary: 107 22% 33%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 43 45% 56%;
+    --secondary-foreground: 0 0% 12%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 0 0% 42%;
+    --accent: 97 30% 58%;
+    --accent-foreground: 0 0% 12%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 107 22% 33%;
+    --radius: 0.625rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F5F0E8;
+    color: #1E1E1E;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-logo {
+    font-family: 'Flamenco', serif;
+  }
+
+  .font-main {
+    font-family: 'Big Shoulders Display', sans-serif;
+  }
+
+  .font-heading {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-tech {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .font-poster {
+    font-family: 'Righteous', sans-serif;
+  }
+
+  .font-acid {
+    font-family: 'Anton', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4A6741;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes slideProgress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
