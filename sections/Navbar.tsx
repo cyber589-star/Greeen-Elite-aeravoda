@@ -38,8 +38,8 @@ export default function Navbar() {
     <>
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all"
-        style={{ transitionDuration: '400ms' }}
         style={{
+          transitionDuration: '400ms',
           transform: hidden ? 'translateY(-100%)' : 'translateY(0)',
           transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
           background: scrolled ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.92)',
