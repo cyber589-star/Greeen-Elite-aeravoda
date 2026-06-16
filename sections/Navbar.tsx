@@ -37,7 +37,8 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-[400ms]"
+        className="fixed top-0 left-0 right-0 z-50 transition-all"
+        style={{ transitionDuration: '400ms' }}
         style={{
           transform: hidden ? 'translateY(-100%)' : 'translateY(0)',
           transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
