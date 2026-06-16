@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { Plus, Edit2, Trash2, Search, X } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
+const supabase = getSupabase();
 
 interface Product {
   id: string;

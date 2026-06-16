@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { Search, Eye, X } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
+const supabase = getSupabase();
 
 interface Order {
   id: string;
