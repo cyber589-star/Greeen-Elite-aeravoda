@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Search, ShoppingBag, Leaf, Menu, X } from 'lucide-react';
+import { useCart } from '@/components/ProductModal';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -13,22 +14,13 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const lastScrollY = useRef(0);
+  const { cartCount } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 50);
-      if (currentY > lastScrollY.current && currentY > 100) {
-        setHidden(true);
-        setMobileOpen(false);
-      } else {
-        setHidden(false);
-      }
-      lastScrollY.current = currentY;
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -37,11 +29,9 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 transition-all"
+        className="fixed top-0 left-0 right-0 z-50"
         style={{
-          transitionDuration: '400ms',
-          transform: hidden ? 'translateY(-100%)' : 'translateY(0)',
-          transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: 'background 400ms, border-bottom 400ms',
           background: scrolled ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.92)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
@@ -76,7 +66,7 @@ export default function Navbar() {
             <button className="hover:text-[#4A6741] transition-all duration-300 relative hover:scale-110 active:scale-95 min-h-[44px] min-w-[44px] flex items-center justify-center">
               <ShoppingBag className="w-[18px] h-[18px]" />
               <span className="absolute top-2 right-2 w-4 h-4 bg-[#4A6741] text-white text-[9px] font-semibold rounded-full flex items-center justify-center">
-                0
+                {cartCount}
               </span>
             </button>
             <a

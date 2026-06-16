@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ShoppingCart, Star, Zap } from 'lucide-react';
+import { useCart } from '@/components/ProductModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,6 +72,7 @@ const menProducts = [
 ];
 
 export default function MenVitality() {
+  const { openProduct, addToCart } = useCart();
   const sectionRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
@@ -137,7 +139,8 @@ export default function MenVitality() {
             <div
               key={product.name}
               ref={(el) => { if (el) cardsRef.current[i] = el; }}
-              className="group relative rounded-2xl overflow-hidden opacity-0 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              onClick={() => openProduct(product)}
+              className="group relative rounded-2xl overflow-hidden opacity-0 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
               style={{
                 background: 'linear-gradient(180deg, #FAFAFA 0%, #F5F5F0 100%)',
                 boxShadow: '0 2px 20px rgba(0,0,0,0.06)',
@@ -191,7 +194,9 @@ export default function MenVitality() {
                     <span className="text-[15px] sm:text-[18px] md:text-[20px] font-bold text-[#4A6741]">₹{product.price}</span>
                     <span className="text-[11px] sm:text-[13px] text-[#999] line-through">₹{product.originalPrice}</span>
                   </div>
-                  <button className="flex items-center gap-1.5 text-[11px] sm:text-[12px] md:text-[13px] font-medium text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg"
+                  <button
+                    onClick={(e) => { e.stopPropagation(); addToCart(); }}
+                    className="flex items-center gap-1.5 text-[11px] sm:text-[12px] md:text-[13px] font-medium text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg"
                     style={{
                       background: 'linear-gradient(135deg, #1E1E1E, #3a3a3a)',
                       boxShadow: '0 4px 15px rgba(30,30,30,0.3)',

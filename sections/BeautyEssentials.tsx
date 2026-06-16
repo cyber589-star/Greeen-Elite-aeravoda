@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ShoppingCart, Star, Sparkles } from 'lucide-react';
+import { useCart } from '@/components/ProductModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,6 +72,7 @@ const beautyProducts = [
 ];
 
 export default function BeautyEssentials() {
+  const { openProduct, addToCart } = useCart();
   const sectionRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
@@ -137,7 +139,8 @@ export default function BeautyEssentials() {
             <div
               key={product.name}
               ref={(el) => { if (el) cardsRef.current[i] = el; }}
-              className="group relative bg-[#FAFAF7] rounded-2xl overflow-hidden opacity-0 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              onClick={() => openProduct(product)}
+              className="group relative bg-[#FAFAF7] rounded-2xl overflow-hidden opacity-0 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
               style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.04)' }}
             >
               {product.badge && (
@@ -191,7 +194,9 @@ export default function BeautyEssentials() {
                       ₹{product.originalPrice}
                     </span>
                   </div>
-                  <button className="flex items-center gap-1.5 text-[11px] sm:text-[12px] md:text-[13px] font-medium text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg"
+                  <button
+                    onClick={(e) => { e.stopPropagation(); addToCart(); }}
+                    className="flex items-center gap-1.5 text-[11px] sm:text-[12px] md:text-[13px] font-medium text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg"
                     style={{
                       background: 'linear-gradient(135deg, #4A6741, #5a7d4f)',
                       boxShadow: '0 4px 15px rgba(74,103,65,0.3)',
